@@ -209,7 +209,7 @@ public class Game1 : Game
         captainsQuarters.Parent = corridor;
 
         _currentRoom = corridor;
-        _backButton = new TextureButton(Content.Load<Texture2D>("back_button"), new Point(GraphicsDevice.Viewport.Bounds.Center.X - Content.Load<Texture2D>("back_button").Bounds.Size.X / 4, GraphicsDevice.Viewport.Bounds.Bottom - 250), GoBack);
+        _backButton = new TextureButton(Content.Load<Texture2D>("back_button"), new Point(GraphicsDevice.Viewport.Bounds.Center.X - Content.Load<Texture2D>("back_button").Bounds.Size.X / 4, GraphicsDevice.Viewport.Bounds.Bottom - 120), GoBack);
 
 
         _unmutedButton = new TextureButton(Content.Load<Texture2D>("unmuted"), new Point(GraphicsDevice.Viewport.Bounds.Right - Content.Load<Texture2D>("unmuted").Bounds.Size.X / 2 - 10, 10), ToggleMute);
@@ -364,12 +364,12 @@ public class Game1 : Game
             _foundClues.Add(foundClue);
             _clueTextBox.Text = foundClue.Description;
             _clueTextBox.Enabled = true;
-            _timer = 5.0;
+            _timer = 2.0;
         }
 
 
         var previousRoom = _currentRoom;
-        _backButton.Enabled = _currentRoom.Parent != null;
+        _backButton.Enabled = _currentRoom.Parent != null && !_clueTextBox.Enabled;
         _backButton.Update();
         _backButton.TryPress();
 
@@ -377,6 +377,7 @@ public class Game1 : Game
         {
             _clueTextBox.Enabled = false;
         }
+
 
 
 
